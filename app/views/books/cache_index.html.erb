@@ -1,0 +1,51 @@
+
+<% cache(cache_key_for_books) do %>
+<h1>Listing books</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Published at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <% cache(book) do %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.price %></td>
+        <td><%= book.published_at %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+
+<%= link_to 'New Book', new_book_path %>
+
+<h2>author info </h2>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
